@@ -245,7 +245,7 @@ int main (int argc, char** argv)
 
 #undef SCHEME
 
-  scheme.initScheme (0.01 / 5, /* dx */
+  scheme.initScheme (0.01 / 20, /* dx */
                      PhysicsConst::SpeedOfLight / (0.02)); /* source frequency */
 
   scheme.initGrids ();

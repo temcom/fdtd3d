@@ -131,6 +131,9 @@ class Scheme3D: public Scheme
 
   bool dumpRes;
 
+  GridCoordinate3D leftNTFF;
+  GridCoordinate3D rightNTFF;
+
 private:
 
   void calculateExStep (time_step, GridCoordinate3D, GridCoordinate3D);
@@ -247,7 +250,9 @@ public:
     EInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     HInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     useMetamaterials (doUseMetamaterials),
-    dumpRes (doDumpRes)
+    dumpRes (doDumpRes),
+    leftNTFF (GridCoordinate3D (14, 14, 14)),
+    rightNTFF (GridCoordinate3D (56, 56, 56))
 #else
   Scheme3D (YeeGridLayout *layout,
             const GridCoordinate3D& totSize,
@@ -305,7 +310,9 @@ public:
     EInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     HInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     useMetamaterials (doUseMetamaterials),
-    dumpRes (doDumpRes)
+    dumpRes (doDumpRes),
+    leftNTFF (GridCoordinate3D (14, 14, 14)),
+    rightNTFF (GridCoordinate3D (56, 56, 56))
 #endif
   {
     ASSERT (!doUseTFSF
@@ -323,6 +330,40 @@ public:
   ~Scheme3D ()
   {
   }
+
+  struct NPair
+  {
+    FieldValue nTeta;
+    FieldValue nPhi;
+
+    NPair (FieldValue n_teta, FieldValue n_phi)
+      : nTeta (n_teta)
+    , nPhi (n_phi)
+    {
+    }
+
+    NPair operator+ (const NPair &right)
+    {
+      return NPair (nTeta + right.nTeta, nPhi + right.nPhi);
+    }
+  };
+
+  /*
+   * 3D ntff
+   */
+  NPair ntffN_x (grid_coord x0, FPValue angleTeta, FPValue anglePhi);
+  NPair ntffN_y (grid_coord y0, FPValue angleTeta, FPValue anglePhi);
+  NPair ntffN_z (grid_coord z0, FPValue angleTeta, FPValue anglePhi);
+
+  NPair ntffL_x (grid_coord x0, FPValue angleTeta, FPValue anglePhi);
+  NPair ntffL_y (grid_coord y0, FPValue angleTeta, FPValue anglePhi);
+  NPair ntffL_z (grid_coord z0, FPValue angleTeta, FPValue anglePhi);
+
+  NPair ntffN (FPValue angleTeta, FPValue anglePhi);
+  NPair ntffL (FPValue angleTeta, FPValue anglePhi);
+
+  FPValue Pointing_scat (FPValue angleTeta, FPValue anglePhi);
+  FPValue Pointing_inc (FPValue angleTeta, FPValue anglePhi);
 };
 
 #endif /* GRID_3D */
