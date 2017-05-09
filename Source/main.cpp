@@ -144,7 +144,7 @@ int main (int argc, char** argv)
 #ifdef GRID_3D
   GridCoordinate3D overallSize (gridSizeX, gridSizeY, gridSizeZ);
   GridCoordinate3D pmlSize (10, 10, 10);
-  GridCoordinate3D tfsfSize (13, 13, 13);
+  GridCoordinate3D tfsfSize (15, 15, 15);
 #endif
 
   FPValue incidentWaveAngle1 = PhysicsConst::Pi / 2; /**< teta */
@@ -245,7 +245,7 @@ int main (int argc, char** argv)
 
 #undef SCHEME
 
-  scheme.initScheme (0.01 / 20, /* dx */
+  scheme.initScheme (0.01 / 5, /* dx */
                      PhysicsConst::SpeedOfLight / (0.02)); /* source frequency */
 
   scheme.initGrids ();

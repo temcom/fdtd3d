@@ -251,8 +251,8 @@ public:
     HInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     useMetamaterials (doUseMetamaterials),
     dumpRes (doDumpRes),
-    leftNTFF (GridCoordinate3D (14, 14, 14)),
-    rightNTFF (GridCoordinate3D (56, 56, 56))
+    leftNTFF (GridCoordinate3D (17, 17, 17)),
+    rightNTFF (GridCoordinate3D (33, 33, 33))
 #else
   Scheme3D (YeeGridLayout *layout,
             const GridCoordinate3D& totSize,
@@ -311,8 +311,8 @@ public:
     HInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     useMetamaterials (doUseMetamaterials),
     dumpRes (doDumpRes),
-    leftNTFF (GridCoordinate3D (14, 14, 14)),
-    rightNTFF (GridCoordinate3D (56, 56, 56))
+    leftNTFF (GridCoordinate3D (13, 13, 13)),
+    rightNTFF (GridCoordinate3D (37, 37, 37))
 #endif
   {
     ASSERT (!doUseTFSF
