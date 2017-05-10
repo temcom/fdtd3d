@@ -312,7 +312,7 @@ public:
     useMetamaterials (doUseMetamaterials),
     dumpRes (doDumpRes),
     leftNTFF (GridCoordinate3D (13, 13, 13)),
-    rightNTFF (GridCoordinate3D (37, 37, 37))
+    rightNTFF (GridCoordinate3D (67, 67, 67))
 #endif
   {
     ASSERT (!doUseTFSF

@@ -2611,6 +2611,18 @@ Scheme3D::performNSteps (time_step startStep, time_step numberTimeSteps)
   //
   //   }
 
+    // //for (FPValue angle = 0; angle <= 2*PhysicsConst::Pi +  PhysicsConst::Pi / 180; angle += PhysicsConst::Pi / 90)
+    // //FPValue angle = ;
+    // {
+    // 
+    //     printf ("=== t=%u, inc angle=%f; angle %f === %.17g \n",
+    //     //printf ("=== t=%u, inc angle=%f; angle %f === %f \n",
+    //             t,
+    //             yeeLayout->getIncidentWaveAngle2 (),
+    //             yeeLayout->getIncidentWaveAngle2 (),
+    //             Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), yeeLayout->getIncidentWaveAngle2 ()));
+    // }
+    
     for (FPValue angle = 0; angle <= 2*PhysicsConst::Pi +  PhysicsConst::Pi / 180; angle += PhysicsConst::Pi / 90)
     //FPValue angle = ;
     {
@@ -2620,7 +2632,7 @@ Scheme3D::performNSteps (time_step startStep, time_step numberTimeSteps)
                 t,
                 yeeLayout->getIncidentWaveAngle2 (),
                 angle,
-                Pointing_scat (PhysicsConst::Pi / 2, angle));
+                Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), angle));
     }
 
     //}
@@ -3760,7 +3772,7 @@ Scheme3D::initGrids ()
         FieldValue epsVal (2);
 #endif /* !COMPLEX_FIELD_VALUES */
 
-        eps->setCurValue (Approximation::approximateSphere (posAbs, GridCoordinateFP3D (25.5, 25.5, 25.5), 5, epsVal));
+        eps->setCurValue (Approximation::approximateSphere (posAbs, GridCoordinateFP3D (40.5, 40.5, 40.5), 23, epsVal));
 
         Eps.setFieldPointValue (eps, pos);
       }
@@ -4433,10 +4445,10 @@ Scheme3D::ntffN_x (grid_coord x0, FPValue angleTeta, FPValue anglePhi)
       GridCoordinateFP3D pos3 (x0, coordY, coordZ - 0.5);
       GridCoordinateFP3D pos4 (x0, coordY, coordZ + 0.5);
 
-      FieldValue val1 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos1));
-      FieldValue val2 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos2));
-      FieldValue val3 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos3));
-      FieldValue val4 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos4));
+      // FieldValue val1 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos1));
+      // FieldValue val2 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos2));
+      // FieldValue val3 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos3));
+      // FieldValue val4 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos4));
 
       pos1 = pos1 - yeeLayout->getMinHzCoordFP ();
       pos2 = pos2 - yeeLayout->getMinHzCoordFP ();
@@ -4485,10 +4497,10 @@ Scheme3D::ntffN_y (grid_coord y0, FPValue angleTeta, FPValue anglePhi)
       GridCoordinateFP3D pos3 (coordX, y0, coordZ - 0.5);
       GridCoordinateFP3D pos4 (coordX, y0, coordZ + 0.5);
 
-      FieldValue val1 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos1));
-      FieldValue val2 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos2));
-      FieldValue val3 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos3));
-      FieldValue val4 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos4));
+      // FieldValue val1 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos1));
+      // FieldValue val2 = yeeLayout->getHzFromIncidentH (approximateIncidentWaveH (pos2));
+      // FieldValue val3 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos3));
+      // FieldValue val4 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos4));
 
       pos1 = pos1 - yeeLayout->getMinHzCoordFP ();
       pos2 = pos2 - yeeLayout->getMinHzCoordFP ();
@@ -4537,10 +4549,10 @@ Scheme3D::ntffN_z (grid_coord z0, FPValue angleTeta, FPValue anglePhi)
       GridCoordinateFP3D pos3 (coordX, coordY - 0.5, z0);
       GridCoordinateFP3D pos4 (coordX, coordY + 0.5, z0);
 
-      FieldValue val1 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos1));
-      FieldValue val2 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos2));
-      FieldValue val3 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos3));
-      FieldValue val4 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos4));
+      // FieldValue val1 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos1));
+      // FieldValue val2 = yeeLayout->getHyFromIncidentH (approximateIncidentWaveH (pos2));
+      // FieldValue val3 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos3));
+      // FieldValue val4 = yeeLayout->getHxFromIncidentH (approximateIncidentWaveH (pos4));
 
       pos1 = pos1 - yeeLayout->getMinHyCoordFP ();
       pos2 = pos2 - yeeLayout->getMinHyCoordFP ();
@@ -4590,10 +4602,10 @@ Scheme3D::ntffL_x (grid_coord x0, FPValue angleTeta, FPValue anglePhi)
       GridCoordinateFP3D pos3 (x0, coordY, coordZ - 0.5);
       GridCoordinateFP3D pos4 (x0, coordY, coordZ + 0.5);
 
-      FieldValue val1 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos1));
-      FieldValue val2 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos2));
-      FieldValue val3 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos3));
-      FieldValue val4 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos4));
+      // FieldValue val1 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos1));
+      // FieldValue val2 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos2));
+      // FieldValue val3 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos3));
+      // FieldValue val4 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos4));
 
       pos1 = pos1 - yeeLayout->getMinEyCoordFP ();
       pos2 = pos2 - yeeLayout->getMinEyCoordFP ();
@@ -4646,10 +4658,10 @@ Scheme3D::ntffL_y (grid_coord y0, FPValue angleTeta, FPValue anglePhi)
       GridCoordinateFP3D pos3 (coordX, y0, coordZ - 0.5);
       GridCoordinateFP3D pos4 (coordX, y0, coordZ + 0.5);
 
-      FieldValue val1 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos1));
-      FieldValue val2 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos2));
-      FieldValue val3 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos3));
-      FieldValue val4 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos4));
+      // FieldValue val1 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos1));
+      // FieldValue val2 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos2));
+      // FieldValue val3 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos3));
+      // FieldValue val4 = yeeLayout->getEzFromIncidentE (approximateIncidentWaveE (pos4));
 
       pos1 = pos1 - yeeLayout->getMinExCoordFP ();
       pos2 = pos2 - yeeLayout->getMinExCoordFP ();
@@ -4702,10 +4714,10 @@ Scheme3D::ntffL_z (grid_coord z0, FPValue angleTeta, FPValue anglePhi)
       GridCoordinateFP3D pos3 (coordX, coordY - 0.5, z0);
       GridCoordinateFP3D pos4 (coordX, coordY + 0.5, z0);
 
-      FieldValue val1 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos1));
-      FieldValue val2 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos2));
-      FieldValue val3 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos3));
-      FieldValue val4 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos4));
+      // FieldValue val1 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos1));
+      // FieldValue val2 = yeeLayout->getExFromIncidentE (approximateIncidentWaveE (pos2));
+      // FieldValue val3 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos3));
+      // FieldValue val4 = yeeLayout->getEyFromIncidentE (approximateIncidentWaveE (pos4));
 
       pos1 = pos1 - yeeLayout->getMinExCoordFP ();
       pos2 = pos2 - yeeLayout->getMinExCoordFP ();
