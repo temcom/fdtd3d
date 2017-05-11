@@ -2620,7 +2620,8 @@ Scheme3D::performNSteps (time_step startStep, time_step numberTimeSteps)
     //             t,
     //             yeeLayout->getIncidentWaveAngle2 (),
     //             yeeLayout->getIncidentWaveAngle2 (),
-    //             Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), yeeLayout->getIncidentWaveAngle2 ()));
+    //             Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), yeeLayout->getIncidentWaveAngle2 ()) /
+    //                  Pointing_inc (yeeLayout->getIncidentWaveAngle1 (), yeeLayout->getIncidentWaveAngle2 ()));
     // }
     
     for (FPValue angle = 0; angle <= 2*PhysicsConst::Pi +  PhysicsConst::Pi / 180; angle += PhysicsConst::Pi / 90)
@@ -2632,7 +2633,7 @@ Scheme3D::performNSteps (time_step startStep, time_step numberTimeSteps)
                 t,
                 yeeLayout->getIncidentWaveAngle2 (),
                 angle,
-                Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), angle));
+                Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), angle) / Pointing_inc (yeeLayout->getIncidentWaveAngle1 (), angle));
     }
 
     //}
@@ -4791,11 +4792,12 @@ Scheme3D::Pointing_scat (FPValue angleTeta, FPValue anglePhi)
 FPValue
 Scheme3D::Pointing_inc (FPValue angleTeta, FPValue anglePhi)
 {
-  GridCoordinateFP3D coord (Ez.getSize ().getX () / 2, Ez.getSize ().getY () / 2, Ez.getSize ().getZ () / 2);
-
-  FieldValue val = approximateIncidentWaveE (coord) * approximateIncidentWaveH (coord) / 2.0;
-
-  return val.real ();
+  // GridCoordinateFP3D coord (Ez.getSize ().getX () / 2, Ez.getSize ().getY () / 2, Ez.getSize ().getZ () / 2);
+  // 
+  // FieldValue val = approximateIncidentWaveE (coord) * approximateIncidentWaveH (coord) / 2.0;
+  // 
+  // return val.real ();
+  return sqrt (PhysicsConst::Eps0 / PhysicsConst::Mu0);
 }
 
 #endif /* GRID_2D */
