@@ -2614,28 +2614,28 @@ Scheme3D::performNSteps (time_step startStep, time_step numberTimeSteps)
 
     // //for (FPValue angle = 0; angle <= 2*PhysicsConst::Pi +  PhysicsConst::Pi / 180; angle += PhysicsConst::Pi / 90)
     // //FPValue angle = ;
-    // {
-    //
-    //     printf ("=== t=%u, inc angle=%f; angle %f === %.17g \n",
-    //     //printf ("=== t=%u, inc angle=%f; angle %f === %f \n",
-    //             t,
-    //             yeeLayout->getIncidentWaveAngle2 (),
-    //             yeeLayout->getIncidentWaveAngle2 (),
-    //             Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), yeeLayout->getIncidentWaveAngle2 ()) /
-    //                  Pointing_inc (yeeLayout->getIncidentWaveAngle1 (), yeeLayout->getIncidentWaveAngle2 ()));
-    // }
-
-    for (FPValue angle = 0; angle <= 2*PhysicsConst::Pi +  PhysicsConst::Pi / 180; angle += PhysicsConst::Pi / 90)
-    //FPValue angle = ;
     {
 
         printf ("=== t=%u, inc angle=%f; angle %f === %.17g \n",
         //printf ("=== t=%u, inc angle=%f; angle %f === %f \n",
                 t,
                 yeeLayout->getIncidentWaveAngle2 (),
-                angle,
-                Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), angle) / Pointing_inc (yeeLayout->getIncidentWaveAngle1 (), angle));
+                PhysicsConst::Pi + yeeLayout->getIncidentWaveAngle2 (),
+                Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), PhysicsConst::Pi + yeeLayout->getIncidentWaveAngle2 ()) /
+                     Pointing_inc (yeeLayout->getIncidentWaveAngle1 (), PhysicsConst::Pi + yeeLayout->getIncidentWaveAngle2 ()));
     }
+
+    // for (FPValue angle = 0; angle <= 2*PhysicsConst::Pi +  PhysicsConst::Pi / 180; angle += PhysicsConst::Pi / 90)
+    // //FPValue angle = ;
+    // {
+    //
+    //     printf ("=== t=%u, inc angle=%f; angle %f === %.17g \n",
+    //     //printf ("=== t=%u, inc angle=%f; angle %f === %f \n",
+    //             t,
+    //             yeeLayout->getIncidentWaveAngle2 (),
+    //             angle,
+    //             Pointing_scat (yeeLayout->getIncidentWaveAngle1 (), angle) / Pointing_inc (yeeLayout->getIncidentWaveAngle1 (), angle));
+    // }
 
     //}
 
