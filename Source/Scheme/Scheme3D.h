@@ -312,7 +312,7 @@ public:
     useMetamaterials (doUseMetamaterials),
     dumpRes (doDumpRes),
     leftNTFF (GridCoordinate3D (13, 13, 13)),
-    rightNTFF (layout->getEzSize () - leftNTFF)
+    rightNTFF (layout->getEzSize () - leftNTFF + GridCoordinate3D (1,1,1))
 #endif
   {
     ASSERT (!doUseTFSF
