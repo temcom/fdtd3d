@@ -3774,7 +3774,7 @@ Scheme3D::initGrids ()
         FieldValue epsVal (2);
 #endif /* !COMPLEX_FIELD_VALUES */
 
-        //eps->setCurValue (Approximation::approximateSphere (posAbs, GridCoordinateFP3D (25.5, 25.5, 25.5), 5, epsVal));
+        eps->setCurValue (Approximation::approximateSphere (posAbs, GridCoordinateFP3D (40.5, 40.5, 40.5), 20, epsVal));
 
         Eps.setFieldPointValue (eps, pos);
       }
