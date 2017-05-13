@@ -311,8 +311,8 @@ public:
     HInc (GridCoordinate1D ((grid_coord) 100*(totSize.getX () + totSize.getY () + totSize.getZ ())), 0),
     useMetamaterials (doUseMetamaterials),
     dumpRes (doDumpRes),
-    leftNTFF (GridCoordinate3D (13, 13, 13)),
-    rightNTFF (GridCoordinate3D (67, 67, 67))
+    leftNTFF (GridCoordinate3D (15, 15, 15)),
+    rightNTFF (layout->getEzSize () - leftNTFF)
 #endif
   {
     ASSERT (!doUseTFSF
